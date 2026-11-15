@@ -1,0 +1,5 @@
+SPF 38x184 at 400 mm o.c. with bridging:
+
+$ python3 joist_spans.py --species SPF --size 38x184 --spacing 400 --restraint B
+
+Spruce - Pine - Fir, No. 1 and No. 2, 38x184, 400 mm o.c., restraint B: maximum span 3.58 m (Table 9.23.4.2.-A)

@@ -1,0 +1,6 @@
+Need to span 3.6 m, SPF at 400 mm o.c. with bridging:
+
+$ python3 joist_spans.py --species SPF --spacing 400 --restraint B --need-span 3.6
+
+Smallest SPF joist spanning 3.6 m at 400 mm o.c. (B): 38x235 - max span 4.17 m
+(The 38x184 falls short at 3.58 m — by 20 mm.)
