@@ -1,0 +1,187 @@
+{
+ "code": "Ontario Building Code 2024, Table 9.23.4.2.-A (Maximum Spans for Floor Joists - General Cases, forming part of Sentence 9.23.4.2.(1))",
+ "units": "maximum span in metres; spacings 300 / 400 / 600 mm on centre",
+ "restraint_conditions": {
+  "S": "with strapping",
+  "B": "with bridging",
+  "SB": "with strapping and bridging"
+ },
+ "load_basis_note_1": "Spans apply only where the floors serve residential areas as described in Table 4.1.5.3, or the uniformly distributed live load on the floors does not exceed that specified for residential areas. Joists must also satisfy the vibration criterion of Sentence 9.23.4.2.(2). The table does not state a dead-load figure; none is assumed here.",
+ "spans_m": {
+  "Douglas Fir - Larch, No. 1 and No. 2": {
+   "38x89": {
+    "S": [
+     2.0,
+     1.85,
+     1.66
+    ],
+    "B": [
+     2.09,
+     1.9,
+     1.66
+    ],
+    "SB": [
+     2.09,
+     1.9,
+     1.66
+    ]
+   },
+   "38x140": {
+    "S": [
+     3.09,
+     2.91,
+     2.62
+    ],
+    "B": [
+     3.29,
+     2.99,
+     2.62
+    ],
+    "SB": [
+     3.29,
+     2.99,
+     2.62
+    ]
+   },
+   "38x184": {
+    "S": [
+     3.71,
+     3.53,
+     3.36
+    ],
+    "B": [
+     4.0,
+     3.76,
+     3.44
+    ],
+    "SB": [
+     4.19,
+     3.9,
+     3.44
+    ]
+   },
+   "38x235": {
+    "S": [
+     4.38,
+     4.16,
+     3.96
+    ],
+    "B": [
+     4.66,
+     4.38,
+     4.11
+    ],
+    "SB": [
+     4.84,
+     4.51,
+     4.2
+    ]
+   },
+   "38x286": {
+    "S": [
+     4.99,
+     4.75,
+     4.52
+    ],
+    "B": [
+     5.26,
+     4.94,
+     4.65
+    ],
+    "SB": [
+     5.43,
+     5.06,
+     4.72
+    ]
+   }
+  },
+  "Spruce - Pine - Fir, No. 1 and No. 2": {
+   "38x89": {
+    "S": [
+     1.86,
+     1.72,
+     1.58
+    ],
+    "B": [
+     1.99,
+     1.81,
+     1.58
+    ],
+    "SB": [
+     1.99,
+     1.81,
+     1.58
+    ]
+   },
+   "38x140": {
+    "S": [
+     2.92,
+     2.71,
+     2.49
+    ],
+    "B": [
+     3.14,
+     2.85,
+     2.49
+    ],
+    "SB": [
+     3.14,
+     2.85,
+     2.49
+    ]
+   },
+   "38x184": {
+    "S": [
+     3.54,
+     3.36,
+     3.2
+    ],
+    "B": [
+     3.81,
+     3.58,
+     3.27
+    ],
+    "SB": [
+     3.99,
+     3.72,
+     3.27
+    ]
+   },
+   "38x235": {
+    "S": [
+     4.17,
+     3.96,
+     3.77
+    ],
+    "B": [
+     4.44,
+     4.17,
+     3.92
+    ],
+    "SB": [
+     4.6,
+     4.29,
+     4.0
+    ]
+   },
+   "38x286": {
+    "S": [
+     4.75,
+     4.52,
+     4.3
+    ],
+    "B": [
+     5.01,
+     4.71,
+     4.42
+    ],
+    "SB": [
+     5.17,
+     4.82,
+     4.49
+    ]
+   }
+  }
+ },
+ "provenance": "Read from the official BC Publications span tables (Table A-1, the NBC-harmonized table of which OBC Table 9.23.4.2.-A is the Ontario counterpart); every spot-check against OBC 2024 reproductions matched exactly (BUILDAiD OBC 2024 table page; an Ontario municipal trailer-park guide reproducing the SPF bridging rows; a published OBC 2024 calculator FAQ). Select Structural, No. 3 and other species groups exist in the source table but are outside this verified subset."
+}
