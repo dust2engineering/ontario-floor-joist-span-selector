@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Floor Joist Span Selector | Dust 2 Engineering Inc.</title>
+<style>
+:root{color-scheme:dark}
+body{background:#0e1116;color:#e6e9ee;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:1.55rem;line-height:1.25;margin:.2em 0 .1em}
+h2{font-size:1.15rem;margin-top:1.6em;color:#ffd479}
+.sub{color:#9fb0c3;margin:.2em 0 1.2em}
+.card{background:#161b22;border:1px solid #2b333f;border-radius:12px;padding:18px;margin:14px 0}
+label{display:block;margin:.7em 0 .25em;color:#c8d3e0;font-size:.95rem}
+input,select,textarea{width:100%;box-sizing:border-box;background:#0e1116;color:#e6e9ee;border:1px solid #39424f;border-radius:8px;padding:9px;font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+button{background:#f0a832;color:#14100a;border:0;border-radius:8px;padding:11px 18px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px}
+pre{background:#0a0d11;border:1px solid #2b333f;border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-word;font-size:.92rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid #2b333f;padding:6px 8px;text-align:left}
+th{background:#1b212b}
+.small{color:#9fb0c3;font-size:.88rem}
+a{color:#7cc4ff}
+.pass{color:#7ee2a0}.fail{color:#ff9c9c}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Ontario Floor Joist Span Selector</h1>
+<p class="sub">OBC 2024 Table 9.23.4.2.-A — SPF and Douglas Fir–Larch floor joist spans, all restraint conditions.</p>
+<div class="card">
+<label>Species and grade</label>
+<select id="sp"><option value="Spruce - Pine - Fir, No. 1 and No. 2" selected>Spruce–Pine–Fir (SPF), No. 1 / No. 2</option><option value="Douglas Fir - Larch, No. 1 and No. 2">Douglas Fir–Larch, No. 1 / No. 2</option></select>
+<label>Joist size</label>
+<select id="sz"><option>38x89</option><option>38x140</option><option selected>38x184</option><option>38x235</option><option>38x286</option></select>
+<div class="row"><div><label>Spacing (mm o.c.)</label><select id="sc"><option>300</option><option selected>400</option><option>600</option></select></div>
+<div><label>Restraint</label><select id="rs"><option value="S">Strapping</option><option value="B" selected>Bridging</option><option value="SB">Strapping + bridging</option></select></div></div>
+<button onclick="calc()">Maximum span</button>
+<pre id="out">Pick the joist and click Maximum span.</pre></div>
+<div class="card"><h2>Find a size instead</h2>
+<label>Span you need to cover (m)</label><input id="need" type="number" value="3.6" step="0.1">
+<button onclick="find()">Smallest joist that works</button>
+<pre id="out2">Uses the species, spacing and restraint selected above.</pre></div>
+<div class="card"><h2>Basis</h2>
+<p class="small">Table 9.23.4.2.-A applies where floors serve residential areas (Table 4.1.5.3 live loads). The joists must also pass the vibration criterion of 9.23.4.2.(2) — a span that satisfies this table can still feel bouncy if vibration governs. Note how restraint buys span: bridging and strapping restrain the joist edges, which is why the same 38×184 SPF joist grows from 3.54 m (strapping, 300 mm) to 3.99 m (strapping + bridging).</p></div>
+<p class="small">Free tool by <b>Dust 2 Engineering Inc.</b>, Mississauga, Ontario — building permit
+drawings for restaurants and small commercial projects across the GTA, stamped by an Ontario P.Eng.
+Flat rate $3,500–$5,000. Questions or a project to discuss: open an issue in this repository.</p>
+</div>
+<script>
+const SP={"Douglas Fir - Larch, No. 1 and No. 2": {"38x89": {"S": [2.0, 1.85, 1.66], "B": [2.09, 1.9, 1.66], "SB": [2.09, 1.9, 1.66]}, "38x140": {"S": [3.09, 2.91, 2.62], "B": [3.29, 2.99, 2.62], "SB": [3.29, 2.99, 2.62]}, "38x184": {"S": [3.71, 3.53, 3.36], "B": [4.0, 3.76, 3.44], "SB": [4.19, 3.9, 3.44]}, "38x235": {"S": [4.38, 4.16, 3.96], "B": [4.66, 4.38, 4.11], "SB": [4.84, 4.51, 4.2]}, "38x286": {"S": [4.99, 4.75, 4.52], "B": [5.26, 4.94, 4.65], "SB": [5.43, 5.06, 4.72]}}, "Spruce - Pine - Fir, No. 1 and No. 2": {"38x89": {"S": [1.86, 1.72, 1.58], "B": [1.99, 1.81, 1.58], "SB": [1.99, 1.81, 1.58]}, "38x140": {"S": [2.92, 2.71, 2.49], "B": [3.14, 2.85, 2.49], "SB": [3.14, 2.85, 2.49]}, "38x184": {"S": [3.54, 3.36, 3.2], "B": [3.81, 3.58, 3.27], "SB": [3.99, 3.72, 3.27]}, "38x235": {"S": [4.17, 3.96, 3.77], "B": [4.44, 4.17, 3.92], "SB": [4.6, 4.29, 4.0]}, "38x286": {"S": [4.75, 4.52, 4.3], "B": [5.01, 4.71, 4.42], "SB": [5.17, 4.82, 4.49]}}};
+function calc(){
+ const t=SP[document.getElementById('sp').value][document.getElementById('sz').value][document.getElementById('rs').value];
+ const idx=[300,400,600].indexOf(parseInt(document.getElementById('sc').value));
+ document.getElementById('out').textContent='Maximum span: '+t[idx]+' m (Table 9.23.4.2.-A)';
+}
+function find(){
+ const sp=document.getElementById('sp').value, rs=document.getElementById('rs').value;
+ const idx=[300,400,600].indexOf(parseInt(document.getElementById('sc').value));
+ const need=parseFloat(document.getElementById('need').value);
+ const sizes=['38x89','38x140','38x184','38x235','38x286'];
+ const ok=sizes.filter(s=>SP[sp][s][rs][idx]>=need);
+ document.getElementById('out2').textContent= ok.length? ('Smallest joist that works: '+ok[0]+' — max span '+SP[sp][ok[0]][rs][idx]+' m') : 'No joist in this table spans '+need+' m at these settings. Reduce the spacing, add a beam, or leave the Part 9 tables.';
+}
+</script>
+</body>
+</html>
